@@ -12,10 +12,9 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      VER: $(date +%s)
+      VER: ${{ (date +%s) }}
     
     steps:
-
     - name: Login to docker.io
       run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
     - uses: actions/checkout@v3
