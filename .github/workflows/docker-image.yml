@@ -9,7 +9,7 @@ on:
 env:
  #LOGIN: ${{ secrets.DOCKER_LOGIN }}
  #NAME: ${{ secrets.DOCKER_NAME }}
-   VER: $(date +%s)
+   VER: ${{ (date +%s) }}
  
 jobs:
 
