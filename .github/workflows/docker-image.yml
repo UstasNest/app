@@ -6,11 +6,13 @@ on:
   pull_request:
     branches: [ "master" ]
 
+#    env:
+#      VER: ${{ (date +%s) }}
+env:
+  IMAGE_TAG: ${{ github.sha }}
 jobs:
 
   build:
-    env:
-      VER: ${{ (date +%s) }}
     runs-on: ubuntu-latest
 
     
@@ -19,8 +21,8 @@ jobs:
       run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:$env.VER
+      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:$IMAGE_TAG
      # ${GITHUB_REF:11}
     - name: Push image to docker.io
-      run: docker push rmulyukov/nginxtest:$env.VER
+      run: docker push rmulyukov/nginxtest:$IMAGE_TAG
   
