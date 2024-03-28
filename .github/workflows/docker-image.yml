@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [ "master" ]
 
-#env:
+env:
  #LOGIN: ${{ secrets.DOCKER_LOGIN }}
  #NAME: ${{ secrets.DOCKER_NAME }}
-  
+   VER: $(date +%s)
  
 jobs:
 
@@ -21,12 +21,9 @@ jobs:
     - name: Login to docker.io
       run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
     - uses: actions/checkout@v3
-    - name: Version
-      env:
-        VER: $(date +%s)
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:${{ VER }}
+      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:${{ env.VER }}
      # ${GITHUB_REF:11}
     - name: Push image to docker.io
-      run: docker push rmulyukov/nginxtest:${{ VER }}
+      run: docker push rmulyukov/nginxtest:${{ env.VER }}
   
