@@ -13,10 +13,6 @@ jobs:
 
     
     steps:
-    - name: Login to docker.io
-      run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:$TAGS
-    - name: Push image to docker.io
-      run: docker push rmulyukov/nginxtest:$TAGS
+    - name: test
+      run:
+        echo ${GITHUB_REF:10}
