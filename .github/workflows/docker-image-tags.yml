@@ -20,4 +20,13 @@ jobs:
       run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:${GITHUB_REF:10}
     - name: Push image to docker.io
       run: docker push rmulyukov/nginxtest:${GITHUB_REF:10}
+    - name: Update tag in values.yaml
+      run: |
+          cd helm/myapp
+          sed -i 's/tag: latest/tag: '${GITHUB_REF:10}'' values.yaml 
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'ustasnest@github.com'
+          git add values.yaml
+          git commit -m "Update values.yaml"
+          git push
 
