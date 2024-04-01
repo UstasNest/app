@@ -28,5 +28,5 @@ jobs:
           git config --global user.email 'ustasnest@github.com'
           git add values.yaml
           git commit -m "Update values.yaml"
-          git push
+          git push origin HEAD
 
