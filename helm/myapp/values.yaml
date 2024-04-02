@@ -6,6 +6,6 @@ service:
 myapp:
   img:
     repo: rmulyukov/nginxtest
-    tag: v1.1.4
+    tag: v1.1.5
 
 podAnnotations: {}
