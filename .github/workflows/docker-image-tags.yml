@@ -21,9 +21,9 @@ jobs:
       run:  echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:$TAG
+      run: docker build . --file Dockerfile --tag rmulyukov/nginxtest:${TAG}
     - name: Push image to docker.io
-      run: docker push rmulyukov/nginxtest:$TAG
+      run: docker push rmulyukov/nginxtest:${TAG}
     - name: Update tag in values.yaml
       run: |
           cd helm/myapp
