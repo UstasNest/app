@@ -23,8 +23,9 @@ jobs:
     - name: Update tag in values.yaml
       run: |
           cd helm/myapp
-          echo "${ GITHUB_REF:10 }"
-          sed -i 's/^    tag: .*/    tag: "${ GITHUB_REF:10 }"/g' values.yaml 
+          export TAG=${ GITHUB_REF:10 }
+          echo $TAG
+          sed -i 's/^    tag: .*/    tag: $TAG/g' values.yaml 
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add values.yaml
