@@ -6,6 +6,6 @@ service:
 myapp:
   img:
     repo: rmulyukov/nginxtest
-    tag: $TAG
+    tag: ${TAG}
 
 podAnnotations: {}
