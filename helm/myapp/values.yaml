@@ -6,6 +6,6 @@ service:
 myapp:
   img:
     repo: rmulyukov/nginxtest
-    tag: latest
+    tag: ${GITHUB_REF:10}
 
 podAnnotations: {}
